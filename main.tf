@@ -124,17 +124,17 @@ resource "azurerm_linux_virtual_machine" "mtc-vm" {
     version   = "latest"
   }
 
-  provisioner "local-exec" {
-    command = templatefile("macos-ssh-script.tpl", {
-      hostname     = self.public_ip_address,
-      user         = "adminuser",
-      identityfile = var.identity_file
+  # provisioner "local-exec" {
+  #   command = templatefile("macos-ssh-script.tpl", {
+  #     hostname     = self.public_ip_address,
+  #     user         = "adminuser",
+  #     identityfile = var.identity_file
 
-    })
-    interpreter = [
-      "bash", "-C"
-    ]
-  }
+  #   })
+  #   interpreter = [
+  #     "bash", "-C"
+  #   ]
+  # }
 
   tags = {
     "environment" = "dev"
