@@ -109,7 +109,7 @@ resource "azurerm_linux_virtual_machine" "mtc-vm" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("~/.ssh/mtc-key-azure.pub")
+    public_key = var.public_key
   }
 
   os_disk {
@@ -128,7 +128,7 @@ resource "azurerm_linux_virtual_machine" "mtc-vm" {
     command = templatefile("macos-ssh-script.tpl", {
       hostname     = self.public_ip_address,
       user         = "adminuser",
-      identityfile = "~/.ssh/mtc-key-azure"
+      identityfile = var.identity_file
 
     })
     interpreter = [
